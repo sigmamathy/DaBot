@@ -13,10 +13,10 @@ public class DiscordBot {
     public static final String born_date = "06/04/2021";
     private JDA jda;
 
-    public static DiscordBot create() throws LoginException{
+    public static DiscordBot create(String token) throws LoginException {
         DiscordBot bot = new DiscordBot();
         bot.jda = JDABuilder.
-                createDefault("ODI4OTU4MzEyMDk1NDE2Mzcw.GMHg10.Z-x8CHGR5kXdI7mJwcioB75jsY4ONAnJOd5sDs").
+                createDefault(token).
                 enableIntents(
                         GatewayIntent.GUILD_MESSAGES,
                         GatewayIntent.GUILD_MESSAGE_TYPING,
