@@ -7,7 +7,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.nio.ByteBuffer;
 
-public class AudioPlayerSendHandler implements AudioSendHandler {
+public class AudioPlayerSendHandler implements AudioSendHandler
+{
     private final AudioPlayer audioPlayer;
     private final ByteBuffer byteBuffer;
     private final MutableAudioFrame frame;

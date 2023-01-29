@@ -32,8 +32,15 @@ public class Queue extends DiscordCommand {
 
         StringBuilder string1 = new StringBuilder();
         if (isPlaying){
-            string1.append("```md\n- ").append(nowPlaying.getInfo().title).append("\n");
-            string1.append("    Time left: ").append(MathHelper.getTime(nowPlaying.getDuration() - nowPlaying.getPosition())).append("\n```");
+            string1.append("Title: `").append(nowPlaying.getInfo().title).append("`\n");
+            string1.append("Author: `").append(nowPlaying.getInfo().author).append("`\n`");
+            string1.append(MathHelper.getTime(nowPlaying.getPosition())).append(" ");
+            int x = Math.round((float)nowPlaying.getPosition() / nowPlaying.getDuration() * 20);
+            for (int i = 0; i <= 20; i++)
+                string1.append(i == x ? "o" : "-");
+            string1.append(" ").append(MathHelper.getTime(nowPlaying.getDuration()));
+            string1.append(" (-").append(MathHelper.getTime(nowPlaying.getDuration() - nowPlaying.getPosition())).append(")`\n");
+            string1.append(nowPlaying.getInfo().uri);
             builder.addField("**Now Playing:**", string1.toString(), false);
         }
         //now playing display
@@ -45,7 +52,7 @@ public class Queue extends DiscordCommand {
             for (AudioTrack track: manager.scheduler.queue) {
                 index++;
                 string2.append("\n\n").append(index).append(". ").append(track.getInfo().title).append("\n");
-                string2.append("    Time left: ").append(MathHelper.getTime(track.getDuration()));
+                string2.append("    Length: ").append(MathHelper.getTime(track.getDuration()));
             }
             string2.append("```");
         }

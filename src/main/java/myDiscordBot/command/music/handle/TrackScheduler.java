@@ -23,14 +23,14 @@ public class TrackScheduler extends AudioEventAdapter {
 
     public void queue(AudioTrack track){
         queue.offer(track);
-        if  (audioPlayer.getPlayingTrack() == null) {
+        if (audioPlayer.getPlayingTrack() == null) {
             audioPlayer.startTrack(queue.poll(), true);
             final AudioTrack now = audioPlayer.getPlayingTrack();
             EmbedBuilder builder = new EmbedBuilder();
             builder.setColor(Color.GREEN);
             builder.setTitle(":musical_note: **Now Playing:**");
-            builder.setDescription("Title: `" + now.getInfo().title + "`\nauthor: `" + now.getInfo().author + "`\n" +
-                    "length: `" + MathHelper.getTime(now.getDuration()) + "`\n" + now.getInfo().uri);
+            builder.setDescription("Title: `" + now.getInfo().title + "`\nAuthor: `" + now.getInfo().author + "`\n" +
+                    "Length: `" + MathHelper.getTime(now.getDuration()) + "`\n" + now.getInfo().uri);
             MusicOnTrackEndEvent.event.sendMessage(builder.build());
         }
     }
@@ -38,6 +38,7 @@ public class TrackScheduler extends AudioEventAdapter {
     public void nextTrack(){
         audioPlayer.startTrack(queue.poll(), false);
     }
+
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         if (endReason.mayStartNext) {
@@ -46,8 +47,8 @@ public class TrackScheduler extends AudioEventAdapter {
             EmbedBuilder builder = new EmbedBuilder();
             builder.setColor(Color.GREEN);
             builder.setTitle(":musical_note: **Now Playing:**");
-            builder.setDescription("Title: `" + now.getInfo().title + "`\nauthor: `" + now.getInfo().author + "`\n" +
-                    "length: `" + MathHelper.getTime(now.getDuration()) + "`\n" + now.getInfo().uri);
+            builder.setDescription("Title: `" + now.getInfo().title + "`\nAuthor: `" + now.getInfo().author + "`\n" +
+                    "Length: `" + MathHelper.getTime(now.getDuration()) + "`\n" + now.getInfo().uri);
             MusicOnTrackEndEvent.event.sendMessage(builder.build());
         }
     }

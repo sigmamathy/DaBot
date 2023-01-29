@@ -84,8 +84,8 @@ public class PlayerManager
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(new Color(0x40A6EE));
         builder.setTitle("Adding to queue:");
-        builder.setDescription("Title: `" + track.getInfo().title + "`\nauthor: `" + track.getInfo().author + "`\n" +
-                "length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
+        builder.setDescription("Title: `" + track.getInfo().title + "`\nAuthor: `" + track.getInfo().author + "`\n" +
+                "Length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
         builder.setFooter("Summoned by " + e.author.getName(), e.author.getAvatarUrl());
         return builder;
     }

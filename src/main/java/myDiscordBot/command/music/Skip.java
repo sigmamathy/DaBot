@@ -30,34 +30,31 @@ public class Skip extends DiscordCommand {
             builder.setColor(Color.ORANGE);
             final AudioTrack track = manager.scheduler.audioPlayer.getPlayingTrack();
             builder.setTitle("Skip 1 song to:");
-            builder.setDescription("Title: `" + track.getInfo().title + "`\nauthor: `" + track.getInfo().author + "`\n" +
-                    "length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
+            builder.setDescription("Title: `" + track.getInfo().title + "`\nAuthor: `" + track.getInfo().author + "`\n" +
+                    "Length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
             builder.setFooter("Summoned by " + e.author.getName(), e.author.getAvatarUrl());
             e.textChannel.sendMessage(builder.build()).queue();
             return;
         }
         try {
-            if (!MathHelper.isInteger(e.args[1]) || Double.parseDouble(e.args[1]) < 1){
-                new BadNumberException().send(e);
+            int times = Integer.parseInt(e.args[1]);
+            if (times > manager.scheduler.queue.size()){
+                e.textChannel.sendMessage("no song to skip").queue();
                 return;
             }
+            for (int i = 0; i < times; i++)
+                manager.scheduler.nextTrack();
         } catch (NumberFormatException exception){
-            new BadArgumentsException().send(e, "Not a number, put numbers here");
+            new BadArgumentsException().send(e, "`args[1]` expects a natural number.");
             return;
         }
-        if (Integer.parseInt(e.args[1]) > manager.scheduler.queue.size()){
-            e.textChannel.sendMessage("no song to skip").queue();
-            return;
-        }
-        for (int i = 0; i < Integer.parseInt(e.args[1]); i++){
-            manager.scheduler.nextTrack();
-        }
+
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(Color.ORANGE);
         final AudioTrack track = manager.scheduler.audioPlayer.getPlayingTrack();
         builder.setTitle("Skip " + Integer.parseInt(e.args[1]) + " song to:");
-        builder.setDescription("Title: `" + track.getInfo().title + "`\nauthor: `" + track.getInfo().author + "`\n" +
-                "length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
+        builder.setDescription("Title: `" + track.getInfo().title + "`\nAuthor: `" + track.getInfo().author + "`\n" +
+                "Length: `" + MathHelper.getTime(track.getDuration()) + "`\n" + track.getInfo().uri);
         builder.setFooter("Summoned by " + e.author.getName(), e.author.getAvatarUrl());
         e.textChannel.sendMessage(builder.build()).queue();
     }
