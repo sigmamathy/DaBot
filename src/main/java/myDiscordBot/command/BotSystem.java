@@ -62,6 +62,7 @@ public class BotSystem extends ListenerAdapter
     private String[] return_args(GuildMessageReceivedEvent e)
     {
         String message = e.getMessage().getContentRaw();
+        if (message == null || message.isEmpty()) return null;
         // arguments division indices
         var args_index = new ArrayList<IntPair>();
         char prev = '\0';
@@ -82,7 +83,7 @@ public class BotSystem extends ListenerAdapter
             if (c == ' ') {
                 if (prev == '\0' || prev == ' ')
                     continue;
-                args_index.get(args_index.size() - 1).end = i;
+                args_index.get(args_index.size() - 1).end = i - (prev == '"' ? 1 : 0);
             }
             else if (prev == ' ' || prev == '\0')
                 args_index.add(new IntPair(i));

@@ -44,12 +44,6 @@ public class Play extends DiscordCommand {
             return;
         }
         String s = e.args[1];
-        StringBuilder sb = new StringBuilder(s);
-        for (int i = 0; i < sb.length(); i++){
-            if (sb.charAt(i) == ' ')
-                sb.deleteCharAt(i);
-        }
-        s = sb.toString();
         if (!isUrl(s))
             s = "ytsearch:" + s;
         PlayerManager.getInstance().loadAndPLay(e, s, true);

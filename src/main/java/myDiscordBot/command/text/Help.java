@@ -22,23 +22,23 @@ public class Help extends DiscordCommand {
                            """, false);
         help.addField("Commands List", """
                            ```md
-                           #Text commands:
+                           # Text commands:
                            help
                            say (content) [hide/nohide]
                            rickroll [name]
                            embed (title) (desc) (footer)
                            
-                           #Image commands:
-                           textimage [foreground] [background]
+                           # Image commands:
+                           textimage (text) [foreground] [background]
                            flip : (horizontal/vertical) {image}
                            
-                           #r8 commands:
+                           # r8 commands:
                            monkerate [name]
                            gaerate [name]
                            waifurate [name]
                            susrate [name]
                            
-                           #Music commands:
+                           # Music commands:
                            join
                            leave
                            add (name/url)

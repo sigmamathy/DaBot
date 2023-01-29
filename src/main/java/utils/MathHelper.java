@@ -8,9 +8,12 @@ public class MathHelper {
     }
 
     public static String getTime(long milliseconds){
-        int minute = (int) Math.floor(milliseconds / 60000.0);
-        int sec = (int) Math.floor(milliseconds / 1000.0) - minute * 60;
+        int hour = (int) Math.floor(milliseconds / 3600000.0);
+        int min = (int) Math.floor(milliseconds / 60000.0) - hour * 60;
+        int sec = (int) Math.floor(milliseconds / 1000.0) - hour * 3600 - min * 60;
         String second = sec >= 10 ? String.valueOf(sec) : "0" + sec;
-        return minute + ":" + second;
+        if (hour == 0) return min + ":" + second;
+        String minute = min >= 10 ? String.valueOf(min) : "0" + min;
+        return hour + ":" + minute + ":" + second;
     }
 }

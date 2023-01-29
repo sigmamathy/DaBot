@@ -8,7 +8,6 @@ import myDiscordBot.command.exception.BadArgumentsException;
 import myDiscordBot.command.exception.NoVoiceChannelConnectedException;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.VoiceChannel;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 

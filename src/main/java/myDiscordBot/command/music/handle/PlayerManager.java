@@ -12,24 +12,31 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class PlayerManager {
+public class PlayerManager
+{
     private static PlayerManager INSTANCE;
     private final Map<Long, GuildMusicManager> musicManagers;
     private final AudioPlayerManager audioPlayerManager;
-    PlayerManager(){
+
+    PlayerManager()
+    {
         musicManagers = new HashMap<>();
         audioPlayerManager = new DefaultAudioPlayerManager();
         AudioSourceManagers.registerRemoteSources(audioPlayerManager);
         AudioSourceManagers.registerLocalSource(audioPlayerManager);
     }
-    public GuildMusicManager getMusicManager(Guild guild){
+
+    public GuildMusicManager getMusicManager(Guild guild)
+    {
         return musicManagers.computeIfAbsent(guild.getIdLong(), (guildID) -> {
             final GuildMusicManager guildMusicManager = new GuildMusicManager(audioPlayerManager);
             guild.getAudioManager().setSendingHandler(guildMusicManager.getSendHandler());
             return guildMusicManager;
         });
     }
-    public void loadAndPLay(DiscordEvent e, String url, boolean play){
+
+    public void loadAndPLay(DiscordEvent e, String url, boolean play)
+    {
         final GuildMusicManager musicManager = getMusicManager(e.textChannel.getGuild());
         final TextChannel channel = e.textChannel;
         audioPlayerManager.loadItemOrdered(musicManager, url, new AudioLoadResultHandler() {

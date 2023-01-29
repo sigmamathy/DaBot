@@ -27,7 +27,4 @@ public class RateMachine
         eb.setFooter("Summoned by " + userName, userAvatar);
         return eb;
     }
-    public void setSpecialCase(String target, int rate){
-        specialCase.put(target, rate);
-    }
 }

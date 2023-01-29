@@ -12,7 +12,8 @@ import java.awt.*;
 public class Queue extends DiscordCommand {
 
     @Override
-    protected void handle(DiscordEvent e) {
+    protected void handle(DiscordEvent e)
+    {
         MusicOnTrackEndEvent.createEvent(e);
         final GuildMusicManager manager = PlayerManager.getInstance().getMusicManager(e.guild);
         //manager
@@ -26,13 +27,13 @@ public class Queue extends DiscordCommand {
         //builder title
 
         AudioTrack nowPlaying = manager.scheduler.audioPlayer.getPlayingTrack();
-        boolean isPLaying = nowPlaying != null;
+        boolean isPlaying = nowPlaying != null;
         //playing track
 
         StringBuilder string1 = new StringBuilder();
-        if (isPLaying){
-            string1.append(nowPlaying.getInfo().title).append("\n");
-            string1.append("`-> Time left: ").append(MathHelper.getTime(nowPlaying.getDuration() - nowPlaying.getPosition())).append("`");
+        if (isPlaying){
+            string1.append("```md\n- ").append(nowPlaying.getInfo().title).append("\n");
+            string1.append("    Time left: ").append(MathHelper.getTime(nowPlaying.getDuration() - nowPlaying.getPosition())).append("\n```");
             builder.addField("**Now Playing:**", string1.toString(), false);
         }
         //now playing display
@@ -40,12 +41,13 @@ public class Queue extends DiscordCommand {
         StringBuilder string2 = new StringBuilder();
         if (!manager.scheduler.queue.isEmpty()) {
             int index = 0;
+            string2.append("```md");
             for (AudioTrack track: manager.scheduler.queue) {
                 index++;
-                string2.append("\n----------------------------------------------------------");
-                string2.append("\n**#").append(index).append(":**\n").append(track.getInfo().title).append("\n");
-                string2.append("`-> Time left: ").append(MathHelper.getTime(track.getDuration())).append("`");
+                string2.append("\n\n").append(index).append(". ").append(track.getInfo().title).append("\n");
+                string2.append("    Time left: ").append(MathHelper.getTime(track.getDuration()));
             }
+            string2.append("```");
         }
         else string2.append("\n").append("`no song here currently`");
         builder.addField("**Song List:**", string2.toString(), false);
