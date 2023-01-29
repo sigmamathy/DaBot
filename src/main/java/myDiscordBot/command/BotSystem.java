@@ -1,12 +1,11 @@
 package myDiscordBot.command;
 
-import myDiscordBot.command.Cprivate.PrivateCommand;
-import myDiscordBot.command.Cpublic.image.*;
-import myDiscordBot.command.Cpublic.moderation.*;
-import myDiscordBot.command.Cpublic.music.*;
-import myDiscordBot.command.Cpublic.music.Queue;
-import myDiscordBot.command.Cpublic.r8.*;
-import myDiscordBot.command.Cpublic.text.*;
+import myDiscordBot.command.image.*;
+import myDiscordBot.command.moderation.*;
+import myDiscordBot.command.music.*;
+import myDiscordBot.command.music.Queue;
+import myDiscordBot.command.r8.*;
+import myDiscordBot.command.text.*;
 import net.dv8tion.jda.api.events.message.guild.*;
 import net.dv8tion.jda.api.hooks.*;
 import org.jetbrains.annotations.*;
@@ -49,8 +48,6 @@ public class BotSystem extends ListenerAdapter
 
         new Kick().exe(e);
         //moderation
-
-        new PrivateCommand().exe(e);
     }
 
     // Integer pair
