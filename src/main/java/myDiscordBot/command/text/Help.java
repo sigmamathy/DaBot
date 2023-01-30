@@ -45,6 +45,7 @@ public class Help extends DiscordCommand {
                            play [name/url]
                            stop
                            pause
+                           seek (time)
                            np
                            queue
                            skip [number]
