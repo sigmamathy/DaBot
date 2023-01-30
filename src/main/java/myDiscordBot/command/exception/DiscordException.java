@@ -17,15 +17,16 @@ public abstract class DiscordException
     public abstract void build(DiscordEvent e);
 
     // Send an error
-    public final void send(DiscordEvent e){
-        send(e, null);
+    public final boolean send(DiscordEvent e){
+        return send(e, null);
     }
 
     // Send an error with an additional reason
-    public final void send(DiscordEvent e, String reason) {
+    public final boolean send(DiscordEvent e, String reason) {
         build(e);
         if (reason != null)
             builder.addField("More Info: ", reason, false);
         e.textChannel.sendMessage(builder.build()).queue();
+        return false;
     }
 }

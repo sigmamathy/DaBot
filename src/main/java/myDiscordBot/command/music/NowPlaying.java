@@ -18,6 +18,7 @@ public class NowPlaying extends DiscordCommand {
     {
         var audioPlayer = PlayerManager.getInstance().getMusicManager(e.guild).scheduler.audioPlayer;
         final AudioTrack now = audioPlayer.getPlayingTrack();
+
         StringBuilder sb = new StringBuilder();
         sb.append("Title: `").append(now.getInfo().title).append("`\n");
         sb.append("Author: `").append(now.getInfo().author).append("`\n`");
@@ -36,11 +37,10 @@ public class NowPlaying extends DiscordCommand {
     }
 
     @Override
-    protected void errorHandle(DiscordEvent e) {
-        if (e.args.length > 1) {
-            new BadArgumentsException().send(e);
-            error();
-        }
+    protected boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 1)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

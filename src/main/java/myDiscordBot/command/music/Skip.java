@@ -24,6 +24,8 @@ public class Skip extends DiscordCommand {
             e.textChannel.sendMessage("no song to skip").queue();
             return;
         }
+        if (manager.scheduler.audioPlayer.isPaused())
+            manager.scheduler.audioPlayer.setPaused(false);
         if (e.args.length == 1) {
             manager.scheduler.nextTrack();
             EmbedBuilder builder = new EmbedBuilder();
@@ -60,11 +62,10 @@ public class Skip extends DiscordCommand {
     }
 
     @Override
-    protected void errorHandle(DiscordEvent e) {
-        if (e.args.length > 2){
-            new BadArgumentsException().send(e);
-            error();
-        }
+    protected boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 2)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

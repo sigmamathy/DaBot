@@ -22,33 +22,34 @@ public class Help extends DiscordCommand {
                            """, false);
         help.addField("Commands List", """
                            ```md
-                           # Text commands:
+                           1. Text commands:
                            help
                            say (content) [hide/nohide]
                            rickroll [name]
                            embed (title) (desc) (footer)
                            
-                           # Image commands:
+                           2. Image commands:
                            textimage (text) [foreground] [background]
                            flip : (horizontal/vertical) {image}
                            
-                           # r8 commands:
+                           3. r8 commands:
                            monkerate [name]
                            gaerate [name]
                            waifurate [name]
                            susrate [name]
                            
-                           # Music commands:
+                           4. Music commands:
                            join
                            leave
                            add (name/url)
                            play [name/url]
                            stop
+                           pause
                            np
                            queue
                            skip [number]
                            
-                           #Moderation
+                           5. Moderation
                            kick [user]
                            ```
                            """,false);
@@ -61,11 +62,10 @@ public class Help extends DiscordCommand {
     }
 
     @Override
-    public void errorHandle(DiscordEvent e) {
-        if (e.args.length != 1) {
-            new BadArgumentsException().send(e);
-            error();
-        }
+    public boolean errorHandle(DiscordEvent e) {
+        if (e.args.length != 1)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

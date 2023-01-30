@@ -39,6 +39,7 @@ public class BotSystem extends ListenerAdapter
         new Add().exe(e);
         new Skip().exe(e);
         new NowPlaying().exe(e);
+        new Pause().exe(e);
         //music commands
 
         new GaeRate().exe(e);

@@ -17,11 +17,10 @@ public class RickRoll extends DiscordCommand
     }
 
     @Override
-    public void errorHandle(DiscordEvent e) {
-        if (e.args.length > 3){
-            new BadArgumentsException().send(e);
-            error();
-        }
+    public boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 3)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

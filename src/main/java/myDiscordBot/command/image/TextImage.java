@@ -61,11 +61,10 @@ public class TextImage extends DiscordCommand {
     }
 
     @Override
-    public void errorHandle(DiscordEvent e) {
-        if (e.args.length < 2 || e.args.length > 4) {
-            new BadArgumentsException().send(e);
-            error();
-        }
+    public boolean errorHandle(DiscordEvent e) {
+        if (e.args.length < 2 || e.args.length > 4)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

@@ -21,11 +21,10 @@ public class Leave extends DiscordCommand {
     }
 
     @Override
-    protected void errorHandle(DiscordEvent e) {
-        if (e.args.length > 1) {
-            new BadArgumentsException().send(e);
-            error();
-        }
+    protected boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 1)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

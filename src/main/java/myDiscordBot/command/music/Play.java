@@ -1,6 +1,5 @@
 package myDiscordBot.command.music;
 
-import myDiscordBot.command.music.handle.GuildMusicManager;
 import myDiscordBot.command.DiscordCommand;
 import myDiscordBot.command.DiscordEvent;
 import myDiscordBot.command.MusicOnTrackEndEvent;
@@ -31,10 +30,15 @@ public class Play extends DiscordCommand {
             return;
         }
         if (e.args.length == 1){
-            final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(e.guild);
-            if (!musicManager.scheduler.queue.isEmpty()){
+            var sc = PlayerManager.getInstance().getMusicManager(e.guild).scheduler;
+            if (sc.audioPlayer.isPaused()) {
+                sc.audioPlayer.setPaused(false);
+                return;
+            }
+            if (!sc.queue.isEmpty())
+            {
                 try {
-                    musicManager.scheduler.queue(musicManager.scheduler.queue.take());
+                    sc.queue(sc.queue.take());
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
@@ -59,11 +63,10 @@ public class Play extends DiscordCommand {
     }
 
     @Override
-    public void errorHandle(DiscordEvent e) {
-        if (e.args.length > 2) {
-            new BadArgumentsException().send(e);
-            error();
-        }
+    public boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 2)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override

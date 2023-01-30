@@ -10,7 +10,9 @@ public abstract class RateCommand extends DiscordCommand {
     private RateMachine machine;
     private String commandName;
 
-    protected RateCommand(){}
+    protected RateCommand() {
+        setUp();
+    }
 
     protected abstract void setUp();
 
@@ -34,16 +36,14 @@ public abstract class RateCommand extends DiscordCommand {
     }
 
     @Override
-    public final void errorHandle(DiscordEvent e) {
-        if (e.args.length > 2){
-            new BadArgumentsException().send(e);
-            error();
-        }
+    public final boolean errorHandle(DiscordEvent e) {
+        if (e.args.length > 2)
+            return new BadArgumentsException().send(e);
+        return true;
     }
 
     @Override
     protected final String getName() {
-        setUp();
         return commandName;
     }
 
