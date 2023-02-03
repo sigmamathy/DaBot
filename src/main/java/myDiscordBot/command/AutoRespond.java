@@ -30,7 +30,7 @@ public class AutoRespond {
 
     public AutoRespond() {
         responds = new ArrayList<>();
-        responds.add(new Respond("china", "ccp", "social credit", "winnie", "pooh", "xi jingping"));
+        responds.add(new Respond("china", "ccp", "social credit", "winnie", "pooh", "xi jingping", "chinese"));
         responds.add(new Respond("downvote"));
         responds.add(new Respond("i asked"));
         responds.add(new Respond("source", "sauce"));
@@ -49,6 +49,9 @@ public class AutoRespond {
         responds.add(new Respond("rick", "never gonna give you up", "we're no strangers to love", "dqw4w9wgxcq"));
         responds.add(new Respond("lmao"));
         responds.add(new Respond("new response", "new respond"));
+        responds.add(new Respond("wtf"));
+        responds.add(new Respond("bird"));
+        responds.add(new Respond("didn't asked", "don't care", "ur mom", "your mom", "ez"));
     }
 
     public void handleCopypasta(Message content, TextChannel channel) {
