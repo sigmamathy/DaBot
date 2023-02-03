@@ -1,4 +1,5 @@
 # Project exclude paths
 /target/
-res/
+res/tmp/
+res/token.txt
 .idea/

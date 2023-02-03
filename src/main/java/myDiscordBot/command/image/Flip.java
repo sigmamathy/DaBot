@@ -21,7 +21,7 @@ public class Flip extends DiscordCommand {
             }
             try {
                 File getImage = att.downloadToFile(
-                        "res/get.png").get();
+                        "res/tmp/get.png").get();
                 File flipped = ImageHelper.imageFlip(getImage,
                         e.args[1].equalsIgnoreCase("horizontal") ? ImageHelper.FLIP_HORIZONTAL : ImageHelper.FLIP_VERTICAL);
                 assert flipped != null;

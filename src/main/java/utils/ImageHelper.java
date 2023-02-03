@@ -82,7 +82,7 @@ public class ImageHelper {
 
             g2d.dispose();
             //draw on new image
-            File output = new File("res/image.png");
+            File output = new File("res/tmp/image.png");
             ImageIO.write(newImage,"png",output);
             return output;
             //output file
@@ -108,7 +108,7 @@ public class ImageHelper {
                     }
                 }
             }
-            File output = new File("res/flipped.png");
+            File output = new File("res/tmp/flipped.png");
             ImageIO.write(newImage,"png",output);
             return output;
         }
