@@ -45,6 +45,10 @@ public class AutoRespond {
         responds.add(new Respond("no bitches"));
         responds.add(new Respond("\uD83D\uDC80"));
         responds.add(new Respond("bruh"));
+        responds.add(new Respond("mee6"));
+        responds.add(new Respond("rick", "never gonna give you up", "we're no strangers to love", "dqw4w9wgxcq"));
+        responds.add(new Respond("lmao"));
+        responds.add(new Respond("new response", "new respond"));
     }
 
     public void handleCopypasta(Message content, TextChannel channel) {
