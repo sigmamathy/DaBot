@@ -19,6 +19,11 @@ public class NowPlaying extends DiscordCommand {
         var audioPlayer = PlayerManager.getInstance().getMusicManager(e.guild).scheduler.audioPlayer;
         final AudioTrack now = audioPlayer.getPlayingTrack();
 
+        if (now == null) {
+            e.textChannel.sendMessage("no song is playing now.").queue();
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("Title: `").append(now.getInfo().title).append("`\n");
         sb.append("Author: `").append(now.getInfo().author).append("`\n`");

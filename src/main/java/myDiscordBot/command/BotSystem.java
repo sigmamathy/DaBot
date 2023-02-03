@@ -13,13 +13,21 @@ import java.util.*;
 
 public class BotSystem extends ListenerAdapter
 {
+    AutoRespond respond;
+
+    public BotSystem() {
+        respond = new AutoRespond();
+    }
+
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event)
     {
         if (event.getAuthor().isBot())
             return;
         DiscordEvent e = new DiscordEvent(return_args(event), event);
-        if (e.args == null || e.args.length == 0)
+        if (e.args == null || e.args.length == 0) {
+            respond.handleCopypasta(event.getMessage(), e.textChannel);
             return;
+        }
 
         new Help().exe(e);
         new Say().exe(e);
